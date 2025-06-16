@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 면접 어시스턴트</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- API 키 입력 모달 -->
+    <div id="api-key-modal-overlay" class="modal-overlay"></div>
+    <div id="api-key-modal" class="modal">
+        <h2>API 키 설정 및 개인정보 안내</h2>
+        <p class="warning-text">
+            <strong>주의:</strong> 본 서비스는 사용자가 제공한 Gemini API를 통해 운영됩니다.
+            이력서, 음성 등 개인정보가 포함될 수 있는 데이터를 업로드하기 전에 개인정보 처리 방침을 숙지해주시기 바랍니다.
+            <strong>절대로 민감한 개인정보를 포함한 문서를 업로드하지 마세요.</strong>
+            모든 데이터 처리는 사용자의 브라우저와 Google API 서버 간에 이루어집니다.
+        </p>
+        <div class="api-key-input-group">
+            <label for="api-key-input">Google AI Studio Gemini API Key:</label>
+            <input type="password" id="api-key-input" placeholder="이곳에 API 키를 입력하세요">
+        </div>
+        <button id="api-key-confirm-btn" disabled>확인</button>
+    </div>
+
+    <div class="container">
+        <!-- 좌측 패널: 이력서 -->
+        <div class="panel left-panel">
+            <div id="resume-container">
+                <div id="resume-drop-zone">
+                    <p>여기에 PDF 이력서 파일을 드래그 앤 드롭하거나 클릭하여 업로드하세요.</p>
+                    <input type="file" id="resume-file-input" accept=".pdf" hidden>
+                </div>
+                <embed id="pdf-viewer" type="application/pdf">
+            </div>
+            <button id="analyze-btn" disabled>이력서 인식 및 질문 추천</button>
+        </div>
+
+        <!-- 우측 패널: 설정 및 결과 -->
+        <div class="panel right-panel">
+            <div class="settings-bar">
+                <div class="setting-item">
+                    <label for="interviewer-count">면접관 수:</label>
+                    <input type="number" id="interviewer-count" value="1" min="1">
+                </div>
+                <div class="setting-item">
+                    <label for="interviewee-count">면접자 수:</label>
+                    <input type="number" id="interviewee-count" value="1" min="1">
+                </div>
+                <div class="keypoints-section">
+                    <label>핵심 Keypoint:</label>
+                    <div id="keypoints-container"></div>
+                    <div class="keypoint-input-wrapper">
+                        <input type="text" id="keypoint-input" placeholder="예: 문제 해결 능력, Python">
+                        <button id="add-keypoint-btn">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-area">
+                <div id="questions-section">
+                    <h3>이력서 기반 추천 질문</h3>
+                    <div id="questions-container" class="content-box">
+                        <p class="placeholder">이력서 '문서 인식' 후 생성됩니다.</p>
+                    </div>
+                </div>
+                
+                <div id="live-section">
+                    <h3>실시간 면접 대화 분석</h3>
+                    <div class="live-controls">
+                        <button id="start-live-btn" disabled>녹음 시작</button>
+                        <button id="end-interview-btn" style="display: none;">면접 종료</button>
+                        <div id="score-display" class="score-box" style="display: none;">
+                            <strong>누적 점수:</strong>
+                            <span id="cumulative-score">N/A</span>
+                        </div>
+                    </div>
+                    <div id="live-status">상태: 대기 중</div>
+                    <div id="live-transcript" class="content-box">
+                         <p class="placeholder">녹음 시작 후 내용이 표시됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
