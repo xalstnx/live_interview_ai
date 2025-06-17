@@ -4,9 +4,11 @@ Vibe Coding과 Gemini를 활용하여 이력서 분석부터 실시간 면접 �
 
  <br>
  
-![demo 영상](res/demo_video.mp4)
+<video width="600" controls>
+  <source src="res/demo_video.mp4" type="video/mp4">
+</video>
 
- 
+
 ---
 
 ## 🚀 주요 기능 (Key Features)
