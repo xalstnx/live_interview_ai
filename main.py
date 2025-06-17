@@ -110,7 +110,7 @@ async def process_audio(
         prompt_parts = []
         prompt_parts.append(f"""
         당신은 면접관을 돕는 AI 어시스턴트입니다. 면접은 {interviewer_count}명의 면접관과 {interviewee_count}명의 면접자로 진행 중입니다.
-        면접자의 이력서 요약과 핵심 평가 포인트는 아래와 같습니다.
+        면접자의 이력서 내용과 핵심 평가 포인트는 아래와 같습니다.
 
         # 이력서 (Markdown):
         {markdown_resume}
@@ -139,7 +139,7 @@ async def process_audio(
         4.  **후속 질문 추천**: 분석을 바탕으로 면접관이 이어가면 좋을 만한 날카로운 후속 질문을 1~2개 추천해주세요. (만약 마지막 대화가 면접관의 질문이었다면, 추천 질문은 생략해도 좋습니다.)
 
         # 출력 형식 (JSON):
-        결과는 반드시 아래와 같은 JSON 형식으로만 응답해야 합니다. 다른 설명이나 코멘트는 절대 추가하지 마세요.
+        결과는 반드시 주어진 JSON 형식으로만 응답해야 합니다. 다른 설명이나 코멘트는 절대 추가하지 마세요.
         """
         )
         prompt = "\n".join(prompt_parts)
@@ -153,7 +153,7 @@ async def process_audio(
                 properties = {
                     "transcript": genai.types.Schema(
                         type = genai.types.Type.STRING,
-                        description = "음성을 텍스트로 변환한 내용(면접관과 면접자 모두의 음성 대화를 텍스트로 변환. 다수인 경우, 면접관1: ~~과 같이 넘버링과 함께 제공)"
+                        description = "음성을 텍스트로 변환한 내용(면접관과 면접자 모두의 음성 대화를 텍스트로 변환. 다수인 경우, 면접관1: ~~과 같이 넘버링과 함께 변환. 다수가 아닌 경우, 면접관: ~~\n면접자: ~~ 형태로 변환)"
                     ),
                     "analysis": genai.types.Schema(
                         type = genai.types.Type.STRING,
