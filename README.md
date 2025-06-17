@@ -4,6 +4,7 @@ Vibe Coding과 Gemini를 활용하여 이력서 분석부터 실시간 면접 �
 
  <br>
  
+ 아래 이미지를 클릭하면, 데모영상을 볼 수 있습니다.
 [![Watch demo](https://img.youtube.com/vi/pobjYleFPZg/maxresdefault.jpg)](https://youtu.be/pobjYleFPZg)
 
 
