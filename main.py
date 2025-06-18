@@ -7,7 +7,7 @@ from google import genai
 from google.genai import types
 from typing import List, Optional
 
-model = 'gemini-2.5-flash-preview-05-20'
+model = 'gemini-2.5-flash'
 
 app = FastAPI()
 
